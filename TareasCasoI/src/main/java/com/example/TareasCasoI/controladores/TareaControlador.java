@@ -3,7 +3,6 @@ package com.example.TareasCasoI.controladores;
 import com.example.TareasCasoI.entidades.Tarea;
 import com.example.TareasCasoI.enumeraciones.Estado;
 import com.example.TareasCasoI.excepciones.MyException;
-import com.example.TareasCasoI.repositorios.TareaRepositorio;
 import com.example.TareasCasoI.servicios.TareaServicio;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +24,7 @@ public class TareaControlador {
     @Autowired
     private TareaServicio tareaServicio;
 
-    @Autowired
-    private TareaRepositorio tareaRepositorio;
+
 
     @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/registrar") //localhost:8080/libro/registrar
@@ -81,8 +79,8 @@ public class TareaControlador {
     @PostMapping("/modificar/{id}")
     public String modificar(
             @PathVariable String id,
-            String titulo,
-            String descripcion,
+            @RequestParam String titulo,
+            @RequestParam String descripcion,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaVencimiento,
             @RequestParam String estado,
             ModelMap modelo) {
@@ -90,7 +88,8 @@ public class TareaControlador {
         try {
 
             Estado estadoEnum = Estado.valueOf(estado);
-            modelo.addAttribute("tarea", tareaRepositorio.buscarPorId(id));
+            
+            modelo.addAttribute("tarea", tareaServicio.buscarPorId(id));
 
             tareaServicio.modificarTarea(id, titulo, descripcion, fechaVencimiento, estadoEnum);
 

@@ -1,9 +1,8 @@
-package com.example.TareasCasoI.servicios;
-
-import com.example.TareasCasoI.entidades.Usuario;
-import com.example.TareasCasoI.enumeraciones.Rol;
-import com.example.TareasCasoI.excepciones.MyException;
-import com.example.TareasCasoI.repositorios.UsuarioRepositorio;
+package com.example.EstudiantesCasoII.servicios;
+import com.example.EstudiantesCasoII.entidades.Usuario;
+import com.example.EstudiantesCasoII.enumeraciones.Rol;
+import com.example.EstudiantesCasoII.excepciones.MyException;
+import com.example.EstudiantesCasoII.repositorios.UsuarioRepositorio;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
-public class UsuarioServicio implements UserDetailsService {
+public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;

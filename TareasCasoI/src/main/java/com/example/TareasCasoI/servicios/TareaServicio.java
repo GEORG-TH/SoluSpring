@@ -54,10 +54,8 @@ public class TareaServicio {
         validar(titulo, descripcion, fechaVencimiento);
 
         Optional<Tarea> respuesta = tareaRepositorio.findById(id);
-        System.out.println("Ingresandoo");
 
         if (respuesta.isPresent()) {
-            System.out.println("Ingrese");
 
             Tarea tarea = respuesta.get();
 
