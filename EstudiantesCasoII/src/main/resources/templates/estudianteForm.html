@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
-        <meta charset="ISO-8859-1">
+        <meta charset="UTF-8">
         <title>Registro de Estudiantes</title>
         <link href="css/one-page-wonder.min.css" rel="stylesheet">
         <!-- CSS only -->
@@ -15,7 +15,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navBar">
+       <nav class="navbar navbar-expand-lg navBar">
 
             <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto elementos">
@@ -24,10 +24,9 @@
                             Estudiantes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" th:href="@{/tarea/lista}">Listar Estudiantes</a></li>
-                            <li><a class="dropdown-item" th:href="@{/tarea/registrar}">Registrar Estudiantes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/estudiante/lista}">Listar Estudiantes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/estudiante/registrar}">Registrar Estudiantes</a></li>
                         </ul>
-
 
                     </li>
 
@@ -45,7 +44,6 @@
                 </ul>
             </div>
         </nav>
-
 
         <div class="container-fluid m-5 contenedor">
 
@@ -69,16 +67,12 @@
                 </div>
 
                 <div class="form-group my-3">
-                    <label class="mb-2">Estado:</label>
-                    <select th:field="*{programaAcademico}" class="form-control">
-                        <option th:value="'INGENIERIA_DE_SISTEMAS'" th:text="'Ingenier�a de Sistemas'"
-                                th:selected="${estudiante.programaAcademico == 'INGENIERIA_DE_SISTEMAS'}"></option>
-                        <option th:value="'ADMINISTRACION_DE_EMPRESAS'" th:text="'Administraci�n de Empresas'"
-                                th:selected="${estudiante.programaAcademico == 'ADMINISTRACION_DE_EMPRESAS'}"></option>
-                        <option th:value="'MEDICINA'" th:text="'Medicina'"
-                                th:selected="${estudiante.programaAcademico == 'MEDICINA'}"></option>
-                        <option th:value="'DERECHO'" th:text="'Derecho'"
-                                th:selected="${estudiante.programaAcademico == 'DERECHO'}"></option>
+                    <label class="mb-2">Programa Academico:</label>
+                    <select id="programaAcademico" name="programaAcademico" required>
+                        <option value="INGENIERIA_DE_SISTEMAS">Ingenieria de Sistemas</option>
+                        <option value="ADMINISTRACION_DE_EMPRESAS">Administracion de Empresas</option>
+                        <option value="MEDICINA">Medicina</option>
+                        <option value="DERECHO">Derecho</option>
                     </select>
 
                 </div>
@@ -86,8 +80,8 @@
 
 
                 <div class="form-group my-3">
-                    <label class="mb-2">A�o de Ingreso:</label> 
-                    <input type="number" class="form-control" name="anioIngreso" placeholder="A�o de Ingreso">
+                    <label class="mb-2">Año de Ingreso:</label> 
+                    <input type="number" class="form-control" name="anioIngreso" placeholder="Año de Ingreso">
                 </div>
 
 
@@ -105,7 +99,7 @@
             </div>
             <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
                 <div class="card-body">
-                    <h5 class="card-title">Error ð</h5>
+                    <h5 class="card-title">Error Ã°ÂÂÂ</h5>
                     <p class="card-text" th:text="${error}"></p>
                 </div>
             </div>
@@ -128,7 +122,7 @@
                 <p class="mb-1">Album example is &copy; Bootstrap,<br>but please download and customize it for yourself!</p>
                 <p class="mb-0">New to Bootstrap? <a href="/"><br>Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
                 <p class="float-end mb-1">
-                    <a href="#" style="text-decoration:none"><span>⬆️</span> Back to top</a>
+                    <a href="#" style="text-decoration:none"><span>â¬ï¸</span> Back to top</a>
                 </p>
             </div>
         </footer>

@@ -24,8 +24,6 @@ public class TareaControlador {
     @Autowired
     private TareaServicio tareaServicio;
 
-
-
     @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/registrar") //localhost:8080/libro/registrar
     public String registrar() {
@@ -64,6 +62,17 @@ public class TareaControlador {
         return "tareaList.html";
     }
 
+    @GetMapping("/verDetalle/{id}")
+    public String verDetalle(@PathVariable String id, ModelMap modelo) {
+
+        Tarea tarea = tareaServicio.buscarPorId(id);
+
+        modelo.put("tarea", tarea);
+
+        return "tareaDetalle.html";
+
+    }
+
     @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/modificar/{id}")
     public String modificar(
@@ -71,7 +80,6 @@ public class TareaControlador {
             ModelMap modelo) {
 
         modelo.put("tarea", tareaServicio.buscarPorId(id));
-       
 
         return "tareaModificar.html";
     }
@@ -88,7 +96,7 @@ public class TareaControlador {
         try {
 
             Estado estadoEnum = Estado.valueOf(estado);
-            
+
             modelo.addAttribute("tarea", tareaServicio.buscarPorId(id));
 
             tareaServicio.modificarTarea(id, titulo, descripcion, fechaVencimiento, estadoEnum);

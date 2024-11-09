@@ -33,9 +33,9 @@ public class EstudianteControlador {
     public String registro(
             @RequestParam String nombreCompleto,
             @RequestParam String correo,
-            @RequestParam Integer edad,
+            @RequestParam(required = false) Integer edad,
             @RequestParam String programaAcademico,
-            @RequestParam Integer anioIngreso,
+            @RequestParam(required = false) Integer anioIngreso,
             ModelMap modelo) {
 
         try {
@@ -62,6 +62,17 @@ public class EstudianteControlador {
         return "estudianteList.html";
     }
 
+    @GetMapping("/verDetalle/{id}")
+    public String verDetalle(@PathVariable String id, ModelMap modelo) {
+        
+        Estudiante estudiante = estudianteServicio.buscarPorId(id);
+        
+        modelo.put("estudiante", estudiante);
+        
+        return "estudianteDetalle.html";
+        
+    }
+
     @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/modificar/{id}")
     public String modificar(
@@ -78,9 +89,9 @@ public class EstudianteControlador {
             @PathVariable String id,
             @RequestParam String nombreCompleto,
             @RequestParam String correo,
-            @RequestParam Integer edad,
+            @RequestParam(required = false) Integer edad,
             @RequestParam String programaAcademico,
-            @RequestParam Integer anioIngreso,
+            @RequestParam(required = false) Integer anioIngreso,
             ModelMap modelo) {
 
         try {

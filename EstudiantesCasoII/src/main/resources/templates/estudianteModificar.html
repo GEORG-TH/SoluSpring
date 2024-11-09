@@ -13,19 +13,18 @@
     <body>
 
 
-         <nav class="navbar navbar-expand-lg navBar">
+        <nav class="navbar navbar-expand-lg navBar">
 
             <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto elementos">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tareas
+                            Estudiantes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" th:href="@{/tarea/lista}">Listar Tareas</a></li>
-                            <li><a class="dropdown-item" th:href="@{/tarea/registrar}">Registrar Tareas</a></li>
+                            <li><a class="dropdown-item" th:href="@{/estudiante/lista}">Listar Estudiantes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/estudiante/registrar}">Registrar Estudiantes</a></li>
                         </ul>
-
 
                     </li>
 
@@ -36,7 +35,7 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">     
-                            <li><a class="dropdown-item" href="/logout" >Cerrar Sesi贸n</a></li>
+                            <li><a class="dropdown-item" href="/logout" >Cerrar Sesi髇</a></li>
                         </ul>
                     </li>
 
@@ -46,43 +45,52 @@
 
         <div class="container-fluid m-5 contenedor">
 
-            <form class="formulario" th:action="@{/tarea/modificar/__${tarea.id}__}" th:object="${tarea}" method="POST">
+            <form class="formulario" th:action="@{/estudiante/modificar/__${estudiante.id}__}" th:object="${estudiante}" method="POST">
+
                 <input type="hidden" th:field="*{id}">
 
-                <h1>Modificar Tarea</h1>
+                <h1>Modificar Estudiante</h1>
 
                 <div class="form-group my-3">
-                    <label class="mb-2">Titulo:</label>
-                    <input th:field="*{titulo}" type="text" class="form-control" placeholder="Titulo">
+                    <label class="mb-2">Nombre Completo:</label>
+                    <input th:field="*{nombreCompleto}" type="text" class="form-control" placeholder="Nombre Completo">
                 </div>
 
                 <div class="form-group my-3">
-                    <label class="mb-2">Descripcion:</label>
-                    <input th:field="*{descripcion}" type="text" class="form-control" placeholder="Descripcion">
+                    <label class="mb-2">Correo Electronico:</label>
+                    <input th:field="*{correo}" type="text" class="form-control" placeholder="Correo Electronico">
                 </div>
 
                 <div class="form-group my-3">
-                    <label class="mb-2">Fecha de Vencimiento:</label>
-                    <input th:value="${#dates.format(tarea.fechaVencimiento, 'yyyy-MM-dd')}" type="date" class="form-control" name="fechaVencimiento" required="">
+                    <label class="mb-2">Edad:</label> 
+                    <input th:field="*{edad}" type="number" class="form-control" placeholder="Edad">
                 </div>
 
-
                 <div class="form-group my-3">
-                    <label class="mb-2">Estado:</label>
-                    <select th:field="*{estado}" class="form-control">
-                        <!-- Opci贸n "POR_HACER" -->
-                        <option th:value="POR_HACER" th:text="'Por Hacer'" 
-                                th:selected="${tarea.estado == 'POR_HACER'}"></option>
+                    <label class="mb-2">Programa Academico:</label>
+                    <select th:field="*{programaAcademico}" class="form-control">
 
-                        <!-- Opci贸n "EN_PROGRESO" -->
-                        <option th:value="EN_PROGRESO" th:text="'En Progreso'" 
-                                th:selected="${tarea.estado == 'EN_PROGRESO'}"></option>
+                        <option th:value="INGENIERIA_DE_SISTEMAS" th:text="'Ingenieria de Sistemas'" 
+                                th:selected="${estudiante.programaAcademico == 'INGENIERIA_DE_SISTEMAS'}"></option>
 
-                        <!-- Opci贸n "COMPLETADA" -->
-                        <option th:value="COMPLETADA" th:text="'Completada'" 
-                                th:selected="${tarea.estado == 'COMPLETADA'}"></option>
+                        <option th:value="ADMINISTRACION_DE_EMPRESAS" th:text="'Administracion de Empresas'" 
+                                th:selected="${estudiante.programaAcademico == 'ADMINISTRACION_DE_EMPRESAS'}"></option>
+
+                        <option th:value="MEDICINA" th:text="'Medicina'" 
+                                th:selected="${estudiante.programaAcademico == 'MEDICINA'}"></option>
+
+                        <option th:value="DERECHO" th:text="'Derecho'" 
+                                th:selected="${estudiante.programaAcademico == 'DERECHO'}"></option>                     
+
                     </select>
+
                 </div>
+
+                <div class="form-group my-3">
+                    <label class="mb-2">A駉 de Ingreso:</label> 
+                    <input th:field="*{anioIngreso}" type="number" class="form-control" placeholder="A駉 de Ingreso">
+                </div>
+
 
                 <button type="submit" class="btn btn-primary mt-3 botones">Guardar</button>
             </form>
